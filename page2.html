@@ -5,7 +5,13 @@
     <style> 
     form{ display:flex; 
         flex-direction:column; 
-        align-items:center; 
+        justify-content: center;
+        align-items: center; 
+        border-radius: 15px;
+        border-color: #4caf4c;
+        background-color: wheat;
+        width: 30%;
+        margin-left: 30%;
         margin-top:50px; } 
 
     input, button{ margin:10px;
@@ -16,6 +22,9 @@
             font-size:16px; 
             width:300px; 
         } 
+    label{
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
     button{ 
             background-color:#4CAF50; 
             color:white; 
@@ -24,7 +33,7 @@
         background-color:#3e8e41;
      } 
      table {
-        border-collapse: collapse;
+       
         width: 100%;
         margin-top: 50px;
      }
@@ -47,17 +56,17 @@
      </style> 
     </head> 
     <body> 
-        <form> 
-            <label for="name">Nom:</label> 
-            <input type="text"id="name"name="name"required>  
+        <form > 
+            <label for="name">Nom:</label>
+            <input type="text"id="name"name="name"required> 
             <label for="surname">Post-nom:</label> 
             <input type="text"id="surname"name="surname"required>
             <label for="phone">telephone:</label> 
             <input type="tel"id="phone"name="phone"required>  
             <label for="email">Email:</label> 
             <input type="email"id="email"name="email"required>  
-            <button type="submit">Ajouter</button> 
-            <button type="button">Supprimer</button>
+            <button type="submit" name="ajouter">Ajouter</button> 
+            <button type="button" name="supprimer">Supprimer</button>
         </form>
         <table>
             <thead>
@@ -69,20 +78,42 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>joel</td>
-                    <td>kanyembo</td>
-                    <td>0821057455</td>
-                    <td>joelkanye</td>
-                </tr>
-
-                <tr>
-                    <td>joel</td>
-                    <td>kanyembo</td>
-                    <td>0821057455</td>
-                    <td>joelkanye</td>
-                </tr>
+               
             </tbody>
         </table>
+        <Script>
+        //Sélectionner le formulaire et le bouton"ajouter" 
+        const form = document.querySelector('form'); 
+        const addButton = document.querySelector('button[nom="ajouter"]');  
+        //Sélectionner le tableau et le corps du tableau 
+        const table = document.querySelector('table');
+        const tbody=table.querySelector('tbody');   
+        //Ajouter un écouteur d'événements sur le bouton"ajouter"  
+        addButton.addEventListener('click',(event)=>{
+        //Empêcher le comportement par défaut du bouton 
+            event.preventDefault();
+            //Récupérer les valeurs des champs de formulaire 
+            const name=form.elements['name'].value;
+            constsurname=form.elements['surname'].value;
+            constphone=form.elements['phone'].value;
+            constemail=form.elements['email'].value;
+            //Créer une nouvelle ligne de tableau avec les valeurs des champs de formulaire 
+            const row=document.createElement('tr');
+            constnameCell=document.createElement('td');
+            constsurnameCell=document.createElement('td');
+            constphoneCell=document.createElement('td');
+            constemailCell=document.createElement('td');
+            nameCell.textContent=name;
+            surnameCell.textContent=surname;phoneCell.textContent=phone;
+            emailCell.textContent=email;
+            row.appendChild(nameCell);
+            row.appendChild(surnameCell);
+            row.appendChild(phoneCell);
+            row.appendChild(emailCell);
+            //Ajouter la nouvelle ligne de tableau au corps du tableau 
+            tbody.appendChild(row);
+            //Réinitialiser les valeurs des champs de formulaire 
+            form.reset(); }); 
+        </Script>
      </body> 
     </html>
