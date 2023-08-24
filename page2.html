@@ -82,28 +82,29 @@
             </tbody>
         </table>
         <Script>
-        //Sélectionner le formulaire et le bouton"ajouter" 
+        //Sélectionner le formulaire, le bouton"ajouter" et le bouton "supprimer" 
         const form = document.querySelector('form'); 
-        const addButton = document.querySelector('button[nom="ajouter"]');  
+        const addButton = document.querySelector('button[name="ajouter"]'); 
+        const deleteButton = document.querySelector('button[name="supprimer"]'); 
         //Sélectionner le tableau et le corps du tableau 
         const table = document.querySelector('table');
-        const tbody=table.querySelector('tbody');   
+        const tbody= table.querySelector('tbody');   
         //Ajouter un écouteur d'événements sur le bouton"ajouter"  
-        addButton.addEventListener('click',(event)=>{
+        addButton.addEventListener('click',(event) => {
         //Empêcher le comportement par défaut du bouton 
             event.preventDefault();
             //Récupérer les valeurs des champs de formulaire 
-            const name=form.elements['name'].value;
-            constsurname=form.elements['surname'].value;
-            constphone=form.elements['phone'].value;
-            constemail=form.elements['email'].value;
+            const name = form.elements ['name'].value;
+            const surname =form.elements ['surname'].value;
+            const phone = form.elements ['phone'].value;
+            const email = form.elements ['email'].value;
             //Créer une nouvelle ligne de tableau avec les valeurs des champs de formulaire 
-            const row=document.createElement('tr');
-            constnameCell=document.createElement('td');
-            constsurnameCell=document.createElement('td');
-            constphoneCell=document.createElement('td');
-            constemailCell=document.createElement('td');
-            nameCell.textContent=name;
+            const row= document.createElement('tr');
+            const nameCell= document.createElement('td');
+            const surnameCell= document.createElement('td');
+            const phoneCell= document.createElement('td');
+            const emailCell= document.createElement('td');
+            nameCell.textContent = name;
             surnameCell.textContent=surname;phoneCell.textContent=phone;
             emailCell.textContent=email;
             row.appendChild(nameCell);
@@ -113,7 +114,16 @@
             //Ajouter la nouvelle ligne de tableau au corps du tableau 
             tbody.appendChild(row);
             //Réinitialiser les valeurs des champs de formulaire 
-            form.reset(); }); 
+            form.reset(); } )
+            //Ajouter un écouteur d'événements sur le bouton"ajouter"  
+        deleteButton.addEventListener('click',(event) => {
+             //Récupérer la ligne du tableau à supprimer
+            const row = Event.target.closest('tr');
+            // supprimer la ligne du tableau
+            row.remove();
+        }
+            
+            )
         </Script>
      </body> 
     </html>
